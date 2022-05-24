@@ -1,0 +1,51 @@
+{% extends 'home.html' %}
+{% block content %}
+    <thead>
+    </thead>
+    <tbody>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Asignar curso</h2>
+            <form id="formulario_asignatura" action="/asignatura/asignar-curso/" method="POST">{% csrf_token %}
+                <div class="mb-3">
+                <label class="form-label">Asignatura</label>
+                    <div class="input-group">
+                            <select class="form-select" aria-label="Default select example">}
+                                 {% for curo in asignatura %}
+                                <option selected>{{ curo.nombre }}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                <label class="form-label">Estudiante</label>
+                <div class="input-group">
+                            <select class="form-select" aria-label="Default select example">}
+                                 {% for curo in estudiante %}
+                                <option selected>{{ curo.pk }} {{ curo.nombre }} {{ curo.apellido}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Crear nuevo curso</button>
+            </form>
+        </div>
+        <div class="col-md-8">
+            <h2>Listado asignaturas</h2>
+
+
+
+            <div class="card">
+
+                <div class="card-body">
+                    {% for cueso in curso %}
+                       <p>{{ cueso }} {{ cueso.id_estudiante.nombre}}</p>
+                     {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </tbody>
+{% endblock %}

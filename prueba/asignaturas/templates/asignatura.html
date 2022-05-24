@@ -1,0 +1,72 @@
+{% extends 'home.html' %}
+{% block content %}
+    <thead>
+
+    </thead>
+    <tbody>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Crear asignatura</h2>
+            <form id="formulario_asignatura" action="/asignatura/registrar-asignatura/" method="POST">{% csrf_token %}
+                <div class="mb-3">
+                    <div class="input-group">
+                        <div class="input-group-text">Nombre</div>
+                        <input type="text" class="form-control" name="txtNombre" id="txtNombre" minlength="3" maxlength="100" autofocus>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group">
+                        <div class="input-group-text">Salón</div>
+                        <input type="text" class="form-control" name="txtSalon" id="txtSalon" minlength="3" maxlength="100">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group">
+                        <div class="input-group-text">Horario</div>
+                        <input type="text" class="form-control" name="txtHoratio" id="txtHoratio"">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group">
+                        <div class="input-group-text">Id profesor</div>
+                        <input type="number" class="form-control" name="nunIdeprofesor" id="nunIdeprofesor"minlength="3" maxlength="200">
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Crear nueva asignatura</button>
+            </form>
+        </div>
+        <div class="col-md-8">
+            <h2>Listado asignaturas</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Salón</th>
+                        <th scope="col">Horario</th>
+                        <th scope="col">Id profesor</th>
+                        <th scope="col">Opcines</th>
+                    </tr>
+                    </thead>
+                    {% for asig in asignatura %}
+                        <tr>
+                            <td>{{ asig.pk }}</td>
+                            <td>{{ asig.nombre }}</td>
+                            <td>{{ asig.salon }}</td>
+                            <td>{{ asig.horario }}</td>
+                            <td>{{ asig.id_profesor }}</td>
+                            <td>
+{#                                <a href="eliminar/estudiante/{{ estu.pk }}" class="btn btn-success">agregar</a>#}
+                                <a href="eliminar/asignatura/{{ asig.pk }}" class="btn btn-danger">eliminar</a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    </tbody>
+{% endblock %}
